@@ -2,28 +2,29 @@ from Backend.util.DButil import getConnection, closeConnection
 # from ./util/DBUtil import getConnection, closeConnection
 import sqlite3
 
-def getAllSchool() :
+def getAllTeachers() :
     conn = getConnection()
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM schools")
-    schools = cursor.fetchall()
+    cursor.execute("SELECT * FROM teachers")
+    teachers = cursor.fetchall()
     closeConnection(conn)
-    return schools
+    return teachers
 
-def getSchoolbyName(name):
+def getTeacherbyName(name):
     conn = getConnection()
     cursor = conn.cursor()
-    query = ("SELECT * FROM schools WHERE name = ?")
+    query = ("SELECT * FROM teachers WHERE name = ?")
     cursor.execute(query, (name,))
-    school = cursor.fetchone()
+    teacher = cursor.fetchone()
     closeConnection(conn)
-    return school
+    return teacher
 
-def insertSchool(name, address) :
+def insertTeacher(name) :
     conn = getConnection()
     cursor = conn.cursor()
-    add_query = ("INSERT INTO schools (name, address) VALUES (?, ?)")
-    cursor.execute(add_query, (name, address))
+    add_query = ("INSERT INTO teachers (tch_id, name) VALUES (NULL, ?)")
+    data_teacher = (name,)
+    cursor.execute(add_query, data_teacher)
     conn.commit()
     closeConnection(conn)
     return
