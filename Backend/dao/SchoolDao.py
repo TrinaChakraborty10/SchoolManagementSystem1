@@ -1,4 +1,4 @@
-from Backend.util.DButil import getConnection, closeConnection
+from util.DButil import getConnection, closeConnection
 # from ./util/DBUtil import getConnection, closeConnection
 import sqlite3
 
