@@ -1,0 +1,47 @@
+# import mysql.connector
+# from util import DButil
+# from dao import ClassDao
+
+# # Connect to server
+# cnx = DButil.getConnection()
+
+# # Get a cursor
+# cur = cnx.cursor()
+
+# # Execute a query
+# cur.execute("SELECT school_id FROM sms.school")
+
+# # Fetch one result
+# row = cur.fetchone()
+# print("Current date is: {0}".format(row[0]))
+
+# # Close connection
+# DButil.closeConnection()
+
+# ClassDao.getAllClass()
+# ClassDao.getClassbyName("10th Grade")
+# ClassDao.insertClass("11th Grade", "Mr. Smith")
+# ClassDao.getAllClass()
+
+from typing import Union
+from fastapi import FastAPI
+
+from api import ClassAPI, SchoolAPI, StudentAPI, TeacherAPI, SubjectAPI
+
+app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+
+
+@app.get("/items/{item_id}")
+def read_item(item_id: int, q: Union[str, None] = None):
+    return {"item_id": item_id, "q": q}
+
+
+app.include_router(ClassAPI.router) 
+app.include_router(SchoolAPI.router)
+app.include_router(StudentAPI.router)
+app.include_router(TeacherAPI.router)
+app.include_router(SubjectAPI.router)
