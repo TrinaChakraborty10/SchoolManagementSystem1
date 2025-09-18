@@ -15,7 +15,7 @@ def get_student_by_name(name: str):
     return {"student": student}
 
 @router.post("/students/")
-def create_student(name: str, age: int, address: str):
+def create_student(name: str, age: str, address: str):
     StudentDao.insertStudent(name, age, address)
     return {"message": "Student created successfully"}
 

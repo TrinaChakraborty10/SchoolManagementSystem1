@@ -11,7 +11,7 @@ def get_teachers():
 
 @router.get("/teachers/{name}")
 def get_teacher_by_name(name: str):
-    teacher = TeacherDao.getTeacherByName(name)
+    teacher = TeacherDao.getTeacherbyName(name)
     return {"teacher": teacher}
 
 @router.post("/teachers/")

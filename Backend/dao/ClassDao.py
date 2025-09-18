@@ -14,16 +14,16 @@ def getAllClass() :
 def getClassbyName(name):
     conn = getConnection()
     cursor = conn.cursor()
-    query = ("SELECT * FROM class WHERE class_name = ?")
+    query = ("SELECT * FROM class WHERE class_name = %s")
     cursor.execute(query, (name,))
     class_ = cursor.fetchone()
     closeConnection(conn)
     return class_
 
-def insertClass(name, teacher) :
+def insertClass(name) :
     conn = getConnection()
     cursor = conn.cursor()
-    add_query = ("INSERT INTO class (class_name) VALUES (?)")
+    add_query = ("INSERT INTO class (class_name) VALUES (%s)")
     data_class = (name,)
     cursor.execute(add_query, data_class)
     conn.commit()

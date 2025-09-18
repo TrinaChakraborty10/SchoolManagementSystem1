@@ -15,6 +15,6 @@ def get_school_by_name(name: str):
     return {"school": school}
 
 @router.post("/schools/")
-def create_school(name: str, address: str):
-    SchoolDao.insertSchool(name, address)
+def create_school(address: str, board: str, coed: str, estd: str, medium: str, name: str):
+    SchoolDao.insertSchool(address, board, coed, estd, medium, name)
     return {"message": "School created successfully"}

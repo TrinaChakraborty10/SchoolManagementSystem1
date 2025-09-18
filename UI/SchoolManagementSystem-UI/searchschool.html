@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body style="background-color:powderblue; font: 1em sans-serif;">
+<link rel="stylesheet" href="styles.css">    
+
+<h2>HTML Forms</h2>
+
+<script> 
+function validateForm() {
+  let x = document.forms["schoolSearchForm"]["schoolname"].value;
+  if (x == "") {
+    alert("School name must be filled out");
+    return false;
+  }
+    let y = document.forms["schoolSearchForm"]["board"].value;
+    if (y == "") {
+    alert("Board name must be filled out");
+    return false;
+    }
+    alert("Searching for school...");
+    alert("School Name: " + x + "\nBoard Name: " + y);
+    let school = document.getElementById("schoolname").value;
+    let board = document.getElementById("board").value;
+    alert("School: " + school + "\nBoard: " + board); 
+    fetch('http://localhost:8000/schools/' + encodeURIComponent(school) + '&board=' + encodeURIComponent(board))
+    .then(response => alert("Response: " + JSON.stringify(response)))
+    return true;
+}
+</script>
+<h1>Search School</h1>
+<p>Enter the school name and board to search for a school:</p>
+
+<form name="schoolSearchForm" onsubmit="return validateForm()">
+  <label for="Schoolname">School name:</label><br>
+  <input type="text" id="schoolname" name="schoolname" value="School name"><br>
+  <label for="board">Board name:</label><br>
+  <input type="text" id="board" name="board" value="Board"><br><br>
+  <input type="submit" style="width: 100px;" value="Search School">
+</form> 
+
+<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+
+</body>
+</html>
+

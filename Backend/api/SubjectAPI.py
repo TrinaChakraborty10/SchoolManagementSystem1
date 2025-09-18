@@ -6,15 +6,15 @@ router = APIRouter()
 
 @router.get("/subjects/")
 def get_subjects(): 
-    subjects = SubjectDao.getAllSubjects()
+    subjects = SubjectDao.getAllSubject()
     return {"subjects": subjects}
 
 @router.get("/subjects/{name}")
 def get_subject_by_name(name: str):
-    subject = SubjectDao.getSubjectByName(name)
+    subject = SubjectDao.getSubjectbyName(name)
     return {"subject": subject}
 
 @router.post("/subjects/")
-def create_subject(name: str, description: str):
-    SubjectDao.insertSubject(name, description)
+def create_subject(name: str):
+    SubjectDao.insertSubject(name)
     return {"message": "Subject created successfully"}
