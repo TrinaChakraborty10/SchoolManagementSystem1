@@ -28,3 +28,28 @@ def insertSchool(addr, board, coed, estd, medium, name) :
     print("Inserted school:", name)
     closeConnection(conn)
     return
+
+def searchSchools(name=None, board=None):
+    conn = getConnection()
+    cursor = conn.cursor()
+    query = "SELECT * FROM school WHERE 1=1"
+    params = []   
+    if name:
+        query += " AND name = %s"
+        params.append(name)
+    if board:
+        query += " AND board = %s"
+        params.append(board)
+    cursor.execute(query, tuple(params))
+    schools = cursor.fetchall()
+    closeConnection(conn)
+    return schools
+
+def countSchoolsByBoard(board):
+    conn = getConnection()
+    cursor = conn.cursor()
+    query = "SELECT COUNT(*) FROM school WHERE board = %s"
+    cursor.execute(query, (board,))
+    count = cursor.fetchone()[0]
+    closeConnection(conn)
+    return count

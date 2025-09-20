@@ -18,3 +18,13 @@ def get_school_by_name(name: str):
 def create_school(address: str, board: str, coed: str, estd: str, medium: str, name: str):
     SchoolDao.insertSchool(address, board, coed, estd, medium, name)
     return {"message": "School created successfully"}
+
+@router.get("/schools/search")
+def search_schools(name: str = None, board: str = None):
+    schools = SchoolDao.searchSchools(name, board)
+    return {"schools": schools}
+
+@router.get("/schools/count/{board}")
+def count_schools_by_board(board: str):
+    count = SchoolDao.countSchoolsByBoard(board)
+    return {"board": board, "count": count}

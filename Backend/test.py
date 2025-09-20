@@ -10,6 +10,6 @@
 # SubjectDao.insertSubject("Mathematics")
 # SubjectDao.insertSubject("Science")
 
-from dao import TeacherDao
-TeacherDao.insertTeacher("Mr. John Doe", "Mathematics")
-TeacherDao.insertTeacher("Ms. Jane Smith", "Science")
+# from dao import TeacherDao
+# TeacherDao.insertTeacher("Mr. John Doe", "Mathematics")
+# TeacherDao.insertTeacher("Ms. Jane Smith", "Science")
